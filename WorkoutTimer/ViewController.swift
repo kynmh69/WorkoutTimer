@@ -65,6 +65,9 @@ class ViewController: UIViewController {
         print("timerInfo.setCount\(self.timerInfo.setCount)")
         self.timerInfo.interval = Int(self.intervalField.text!) ?? self.timerInfo.interval
         print("timerInfo.second: \(self.timerInfo.second)")
+        self.intervalField.text?.removeAll()
+        self.countField.text?.removeAll()
+        self.timeLbl.text = "\(self.timerInfo.setCount).\(self.timerInfo.second)"
     }
     
     /// キーボード以外のところをタップしたら、フィールドの値を取得して閉じる
@@ -96,8 +99,7 @@ class ViewController: UIViewController {
     
     /// タイマーをリセットする
     func resetTimer() {
-        self.timerInfo.setCount = 10
-        self.timerInfo.second = 0
+        self.timerInfo = TimerInfo(interval: 5, setCount: 10, second: 0)
         self.counter = self.timerInfo.setCount
         self.counterSec = self.timerInfo.second
         self.timeLbl.text = "\(self.counter).\(self.counterSec)"
