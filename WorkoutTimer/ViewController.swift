@@ -79,17 +79,16 @@ class ViewController: UIViewController {
 
         self.view.endEditing(true)
     }
-    
-    
+
     /// タイマーをカウントダウンする
     @objc func timerUpdate() {
         self.counterSec -= 1
-        if self.counter == 0 && self.counterSec == 0 {
+        if self.counter == 0 && self.counterSec < 0 {
             self.timer?.invalidate()
             self.resetTimer()
         }
         if self.counterSec < 0 {
-            self.counterSec = self.timerInfo.interval
+            self.counterSec = self.timerInfo.interval - 1
             self.counter -= 1
         }
         
