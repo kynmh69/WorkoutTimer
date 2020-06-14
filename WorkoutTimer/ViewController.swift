@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
     
     /// if tap start button
-    /// - Parameter sender: <#sender description#>
+    /// - Parameter sender: Any
     @IBAction func startBt(_ sender: Any) {
         self.getFields()
         self.timeLbl.text = "\(self.timerInfo.setCount).\(self.timerInfo.second)"
@@ -46,14 +46,14 @@ class ViewController: UIViewController {
     
     
     /// if tap stop button
-    /// - Parameter sender: <#sender description#>
+    /// - Parameter sender: Any
     @IBAction func stopBt(_ sender: Any) {
         self.timer?.invalidate()
     }
     
     
     /// if tap reset button
-    /// - Parameter sender: <#sender description#>
+    /// - Parameter sender: Any
     @IBAction func resetBt(_ sender: Any) {
         self.resetTimer()
     }
@@ -69,8 +69,8 @@ class ViewController: UIViewController {
     
     /// キーボード以外のところをタップしたら、フィールドの値を取得して閉じる
     /// - Parameters:
-    ///   - touches: <#touches description#>
-    ///   - event: <#event description#>
+    ///   - touches: Set<UITouch>
+    ///   - event: UIEvent
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.getFields()
 
