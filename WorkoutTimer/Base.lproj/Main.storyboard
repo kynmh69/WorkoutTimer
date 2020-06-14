@@ -15,19 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgc-cO-kxb">
-                                <rect key="frame" x="170" y="282" width="74" height="41"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAh-hr-3Ci">
-                                <rect key="frame" x="293" y="550" width="32" height="30"/>
-                                <state key="normal" title="Stop"/>
-                                <connections>
-                                    <action selector="stopBt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Htv-0L-zgZ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ja-Df-4yc">
                                 <rect key="frame" x="88" y="550" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
@@ -35,26 +22,62 @@
                                     <action selector="startBt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7IJ-Fp-WZx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAh-hr-3Ci">
+                                <rect key="frame" x="293" y="550" width="32" height="30"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopBt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Htv-0L-zgZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGT-8L-F6d">
+                                <rect key="frame" x="187.5" y="719" width="39" height="30"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetBt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L01-oV-o2v"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Count" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="53E-Tw-KLv">
+                                <rect key="frame" x="72" y="136" width="67" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Interval" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QfC-3Q-Ppz">
+                                <rect key="frame" x="271.5" y="136" width="76" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgc-cO-kxb">
+                                <rect key="frame" x="77" y="238" width="260" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="fgc-cO-kxb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="170" id="0QD-x0-kIN"/>
                             <constraint firstItem="5ja-Df-4yc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-102" id="5zi-xI-n8U"/>
+                            <constraint firstItem="QfC-3Q-Ppz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="102.5" id="GFk-rH-UWX"/>
                             <constraint firstItem="QAh-hr-3Ci" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="117" id="I9K-qH-0gv"/>
-                            <constraint firstItem="fgc-cO-kxb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="238" id="Lkf-D2-q3p"/>
+                            <constraint firstItem="53E-Tw-KLv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-295" id="OM4-a2-qWC"/>
                             <constraint firstItem="5ja-Df-4yc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="117" id="Rqc-oh-xwA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fgc-cO-kxb" secondAttribute="trailing" constant="170" id="jLb-86-CqY"/>
+                            <constraint firstItem="kGT-8L-F6d" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="286" id="XGo-9o-xhP"/>
+                            <constraint firstItem="53E-Tw-KLv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-101.5" id="ZDs-E3-sU0"/>
+                            <constraint firstItem="kGT-8L-F6d" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jpx-Bd-mRu"/>
+                            <constraint firstItem="QfC-3Q-Ppz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-295" id="niP-dj-9uL"/>
                             <constraint firstItem="QAh-hr-3Ci" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="102" id="yxk-Rs-Abg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="countField" destination="53E-Tw-KLv" id="Eqg-6i-aZe"/>
+                        <outlet property="intervalField" destination="QfC-3Q-Ppz" id="kah-Yw-gno"/>
                         <outlet property="timeLbl" destination="fgc-cO-kxb" id="PJL-RQ-Yjz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="138"/>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
 </document>
