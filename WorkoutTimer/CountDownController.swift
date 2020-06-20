@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 
 class CountDown: ObservableObject {
@@ -18,6 +19,7 @@ class CountDown: ObservableObject {
     @objc var timer: Timer?
     private var timerInfo: TimerInfo?
     private var str: String?
+    private let stopMusicPath = Bundle.main.bundleURL.appendingPathComponent("471.mp3")
     init(timerInfoIni: TimerInfo) {
         self.timerInfo = timerInfoIni
     }
@@ -25,19 +27,23 @@ class CountDown: ObservableObject {
     /// - Parameter sender: Any
     func startBt() {
         print("timer: \(self.timerInfo!.setCount).\(self.timerInfo!.second)")
-        self.count = self.timerInfo!.setCount
-        self.second = self.timerInfo!.second
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerUpdate), userInfo: nil, repeats: true)
     }
     /// タイマーをカウントダウンする
     @objc func timerUpdate() {
         self.second -= 1
         if self.count == 0 && self.second < 0 {
+            do {
+                let musicStop = try AVAudioPlayer(contentsOf: self.stopMusicPath, fileTypeHint: ".mp3")
+                musicStop.play()
+            } catch  {
+                print("audio error")
+            }
             self.timer?.invalidate()
             self.resetTimer()
         }
         if self.second < 0 {
-            self.second = self.timerInfo!.interval - 1
+            self.second = self.interval - 1
             self.count -= 1
         }
 
