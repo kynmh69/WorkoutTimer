@@ -15,6 +15,7 @@
 		F531FB752495F631005BBE27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F531FB732495F631005BBE27 /* LaunchScreen.storyboard */; };
 		F5AD37EF249DD09400F46F53 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD37EE249DD09400F46F53 /* SwiftUIView.swift */; };
 		F5AD3813249DFBF800F46F53 /* CountDownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD3812249DFBF800F46F53 /* CountDownController.swift */; };
+		F5AD3815249E071F00F46F53 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AD3814249E071F00F46F53 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		F531FB762495F631005BBE27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5AD37EE249DD09400F46F53 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		F5AD3812249DFBF800F46F53 /* CountDownController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownController.swift; sourceTree = "<group>"; };
+		F5AD3814249E071F00F46F53 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				F531FB6A2495F630005BBE27 /* SceneDelegate.swift */,
 				F531FB6C2495F630005BBE27 /* ViewController.swift */,
 				F5AD37EE249DD09400F46F53 /* SwiftUIView.swift */,
+				F5AD3814249E071F00F46F53 /* SettingView.swift */,
 				F5AD3812249DFBF800F46F53 /* CountDownController.swift */,
 				F531FB6E2495F630005BBE27 /* Main.storyboard */,
 				F531FB712495F631005BBE27 /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 				F531FB6D2495F630005BBE27 /* ViewController.swift in Sources */,
 				F531FB692495F630005BBE27 /* AppDelegate.swift in Sources */,
 				F5AD37EF249DD09400F46F53 /* SwiftUIView.swift in Sources */,
+				F5AD3815249E071F00F46F53 /* SettingView.swift in Sources */,
 				F531FB6B2495F630005BBE27 /* SceneDelegate.swift in Sources */,
 				F5AD3813249DFBF800F46F53 /* CountDownController.swift in Sources */,
 			);

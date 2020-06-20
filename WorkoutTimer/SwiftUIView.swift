@@ -9,68 +9,86 @@
 import SwiftUI
 
 struct SwiftUIView: View {
-    @State var count = 0
-    @State var interval = 0
-    @State var showTime = ""
+    @State private var showTime = "Time"
+    @State var showSecondView = false
+    @ObservedObject var timeInfo: CountDown
     
 //    Set default
-    var timerInfo = TimerInfo(interval: 10, setCount: 5, second: 0)
+    var timeData = TimerInfo(interval: 10, setCount: 5, second: 0)
     var body: some View {
-        
         VStack(alignment: .center) {
-            NavigationView{
-                Form {
-                    Picker(selection: $count, label: Text("Count")) {
-                        ForEach(3 ..< 30, id: \.self) {
-                            num in Text("\(num)")
-                        }
-                    }
-                    Picker(selection: $interval, label: Text("Interval")){
-                        ForEach(3 ..< 30, id: \.self) {
-                            num in Text("\(num)")
-                        }
-                    }
+//            設定値の表示
+            HStack{
+                Button(action: {
+                    self.showSecondView.toggle()
+                }) {
+                    CircleButton(text: "i")
                 }
             }
-            .frame(height: 200.0)
-//            設定値の表示
-            HStack(alignment: .center, spacing: 40) {
-                Text("Count:   \(self.count)")
-                Text("Interval:   \(self.interval)")
+            .sheet(isPresented: self.$showSecondView, content: {
+                SettingView(isPresent: self.$showSecondView, timeInfo: self.timeInfo)
+            })
+            HStack(alignment: .center, spacing: 50) {
+                Text("Count:   \(self.timeInfo.count)")
+                Text("Interval:   \(self.timeInfo.interval)")
             }
             .padding()
-            Text("Time")
-                .font(.largeTitle)
-                .bold()
-            
-            Group {
-                HStack(alignment: .center, spacing: 60) {
-                    Button(action: {
-                        print("Start")
-                    }) {
-                        Text("Start")
-                    }
-                    Button(action: {
-                        print("Stop")
-                    }){
-                        Text("Stop")
-                    }
-                }
-                HStack {
-                    Button(action: {
-                        print("reset")
-                    }) {
-                        Text("Reset")
-                    }.foregroundColor(Color.red)
-                }
-            }
+            Spacer()
+            Text("\(self.timeInfo.count).\(self.timeInfo.second)")
+            .font(.largeTitle)
+            .fontWeight(.heavy)
+            .multilineTextAlignment(.center)
+            Spacer()
+            ControlButton(timeInfo: timeInfo)
         }
-    .padding()
+        .padding()
     }
 }
 
+struct CircleButton: View {
+    var text: String
+    
+    var body: some View {
+        Text(text)
+            .font(.title)
+            .padding()
+            .overlay(Circle().stroke(lineWidth: 2))
+    }
+}
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUIView()
+        SwiftUIView(showSecondView: false, timeInfo: CountDown(timerInfoIni: TimerInfo(interval: 5, setCount: 10, second: 0)), timeData: TimerInfo(interval: 5, setCount: 10, second: 0))
+    }
+}
+
+struct ControlButton: View {
+    @ObservedObject var timeInfo: CountDown
+    var body: some View {
+        Group {
+            HStack(alignment: .center, spacing: 60) {
+                Button(action: {
+                    print("Start")
+                    self.timeInfo.startBt()
+                }) {
+                    CircleButton(text: "Start")
+                }
+                Button(action: {
+                    print("Stop")
+                    self.timeInfo.stopTimer()
+                }){
+                    CircleButton(text: "Stop")
+                }
+            }
+            HStack {
+                Button(action: {
+                    print("reset")
+                    self.timeInfo.resetTimer()
+                }) {
+                    CircleButton(text: "Reset")
+                }
+                .foregroundColor(Color.red)
+                
+            }
+        }
     }
 }
