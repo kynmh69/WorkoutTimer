@@ -16,20 +16,18 @@ struct SwiftUIView: View {
     var timeData = TimerInfo(interval: 10, setCount: 5, second: 0)
     var body: some View {
         VStack(alignment: .center) {
-//            設定値の表示
-            HStack{
-                Button(action: {
-                    self.showSecondView.toggle()
-                }) {
-                    CircleButton(text: "i")
-                }
+            HStack(alignment: .firstTextBaseline) {
+                Text("Workout Timer")
+                    .font(.system(size: 40, weight: .black, design: .default))
+                Spacer()
+                SettingButton(showSecoundView: self.$showSecondView)
             }
             .sheet(isPresented: self.$showSecondView, content: {
                 SettingView(isPresent: self.$showSecondView, timeInfo: self.timeInfo)
             })
             HStack(alignment: .center, spacing: 50) {
-                Text("Count:   \(self.timeInfo.count)")
-                Text("Interval:   \(self.timeInfo.interval)")
+                Text("Count: \(self.timeInfo.count)")
+                Text("Interval: \(self.timeInfo.interval)")
             }
             .padding()
             Spacer()
@@ -57,7 +55,12 @@ struct CircleButton: View {
 }
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUIView(showSecondView: false, timeInfo: CountDown(timerInfoIni: TimerInfo(interval: 5, setCount: 10, second: 0)), timeData: TimerInfo(interval: 5, setCount: 10, second: 0))
+        ForEach(["iPhone SE", "iPhone 11 Pro Max", "iPhone X", "iPad Pro (11-inch)"], id: \.self) { deviceName in
+            SwiftUIView(showSecondView: false, timeInfo: CountDown(timerInfoIni: TimerInfo(interval: 5, setCount: 10, second: 0)), timeData: TimerInfo(interval: 5, setCount: 10, second: 0))
+                /// 以下の2行を追加
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+        }
     }
 }
 
@@ -89,6 +92,17 @@ struct ControlButton: View {
                 .foregroundColor(Color.red)
                 
             }
+        }
+    }
+}
+
+struct SettingButton: View {
+    @Binding var showSecoundView: Bool
+    var body: some View {
+        Button(action: {
+            self.showSecoundView.toggle()
+        }) {
+            Text("Edit")
         }
     }
 }
