@@ -19,26 +19,36 @@ class CountDown: ObservableObject {
     @objc var timer: Timer?
     private var timerInfo: TimerInfo?
     private var str: String?
-    private let stopMusicPath = Bundle.main.bundleURL.appendingPathComponent("471.mp3")
+    private let stopMusicPath = Bundle.main.bundleURL.appendingPathComponent("stopMusic.mp3")
+    private let countSound =  Bundle.main.bundleURL.appendingPathComponent("cursor2.mp3")
+    private var countSoundPlayer: AVAudioPlayer?
+    private var musicStop: AVAudioPlayer?
     init(timerInfoIni: TimerInfo) {
         self.timerInfo = timerInfoIni
     }
     /// if tap start button
     /// - Parameter sender: Any
     func startBt() {
+        do {
+            self.countSoundPlayer = try AVAudioPlayer(contentsOf: countSound, fileTypeHint: "mp3")
+            self.musicStop = try AVAudioPlayer(contentsOf: stopMusicPath, fileTypeHint: "mp3")
+        } catch  {
+            print("error")
+        }
+        self.countSoundPlayer?.prepareToPlay()
+        self.musicStop?.prepareToPlay()
         print("timer: \(self.timerInfo!.setCount).\(self.timerInfo!.second)")
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerUpdate), userInfo: nil, repeats: true)
     }
     /// タイマーをカウントダウンする
     @objc func timerUpdate() {
         self.second -= 1
+        if self.second >= 0 {
+            print("play!!")
+            self.countSoundPlayer!.play()
+        }
         if self.count == 0 && self.second < 0 {
-            do {
-                let musicStop = try AVAudioPlayer(contentsOf: self.stopMusicPath, fileTypeHint: ".mp3")
-                musicStop.play()
-            } catch  {
-                print("audio error")
-            }
+            self.musicStop!.play()
             self.timer?.invalidate()
             self.resetTimer()
         }
