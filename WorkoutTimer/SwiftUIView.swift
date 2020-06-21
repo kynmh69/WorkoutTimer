@@ -25,6 +25,7 @@ struct SwiftUIView: View {
             .sheet(isPresented: self.$showSecondView, content: {
                 SettingView(isPresent: self.$showSecondView, timeInfo: self.timeInfo)
             })
+            Divider()
             HStack(alignment: .center, spacing: 50) {
                 Text("Count: \(self.timeInfo.count)")
                 Text("Interval: \(self.timeInfo.interval)")
@@ -32,10 +33,17 @@ struct SwiftUIView: View {
             .padding()
             Spacer()
             // show Counter
-            Text("\(self.timeInfo.tempCount).\(self.timeInfo.second)")
-                .font(.system(size: 120, weight: .black, design: .rounded))
-            .multilineTextAlignment(.center)
             
+            ZStack {
+                RoundedRectangle(cornerRadius: 20.0)
+                    .fill(Color.white)
+                    .shadow(radius: 13.0)
+                    .scaledToFill()
+                Text("\(self.timeInfo.tempCount).\(self.timeInfo.second)")
+                .font(.system(size: 120, weight: .black, design: .rounded))
+                .multilineTextAlignment(.center)
+            }
+            .frame(width: 350, height: 300)
             Spacer()
             ControlButton(timeInfo: timeInfo)
         }
@@ -50,7 +58,7 @@ struct CircleButton: View {
         Text(text)
             .font(.title)
             .padding()
-            .overlay(Circle().stroke(lineWidth: 2))
+            .overlay(Circle().stroke(lineWidth: 2).scaledToFill())
     }
 }
 struct SwiftUIView_Previews: PreviewProvider {
@@ -90,6 +98,7 @@ struct ControlButton: View {
                     CircleButton(text: "Reset")
                 }
                 .foregroundColor(Color.red)
+            .padding()
                 
             }
         }
