@@ -27,7 +27,7 @@ class CountDown: ObservableObject {
     private var musicStop: AVAudioPlayer?
     init(timerInfoIni: TimerInfo) {
         self.timerInfo = timerInfoIni
-//        UIApplication.shared.isIdleTimerDisabled = self.blockLock
+        UIApplication.shared.isIdleTimerDisabled = self.blockLock
     }
     /// if tap start button
     /// - Parameter sender: Any
