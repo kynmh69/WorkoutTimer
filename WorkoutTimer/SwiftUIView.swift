@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct SwiftUIView: View {
-    @State private var showTime = "Time"
     @State var showSecondView = false
     @ObservedObject var timeInfo: CountDown
     
@@ -34,10 +33,11 @@ struct SwiftUIView: View {
             }
             .padding()
             Spacer()
-            Text("\(self.timeInfo.count).\(self.timeInfo.second)")
-            .font(.largeTitle)
-            .fontWeight(.heavy)
+            // show Counter
+            Text("\(self.timeInfo.tempCount).\(self.timeInfo.second)")
+                .font(.system(size: 120, weight: .black, design: .rounded))
             .multilineTextAlignment(.center)
+            
             Spacer()
             ControlButton(timeInfo: timeInfo)
         }

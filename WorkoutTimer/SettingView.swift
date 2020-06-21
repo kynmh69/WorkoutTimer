@@ -25,6 +25,8 @@ struct SettingView: View {
                         num in Text("\(num)")
                     }
                 }
+                Toggle("Block unlock", isOn: self.$timeInfo.blockLock)
+                
             }
             .navigationBarTitle("Settings", displayMode: .inline)
             .navigationBarItems(trailing:
@@ -38,4 +40,3 @@ struct SettingView: View {
         
     }
 }
-

@@ -15,6 +15,8 @@ class CountDown: ObservableObject {
     @Published var count = 10
     @Published var interval = 5
     @Published var second = 0
+    @Published var tempCount = 10
+    @Published var blockLock = true
     
     @objc var timer: Timer?
     private var timerInfo: TimerInfo?
@@ -25,6 +27,7 @@ class CountDown: ObservableObject {
     private var musicStop: AVAudioPlayer?
     init(timerInfoIni: TimerInfo) {
         self.timerInfo = timerInfoIni
+//        UIApplication.shared.isIdleTimerDisabled = self.blockLock
     }
     /// if tap start button
     /// - Parameter sender: Any
@@ -33,8 +36,10 @@ class CountDown: ObservableObject {
             self.countSoundPlayer = try AVAudioPlayer(contentsOf: countSound, fileTypeHint: "mp3")
             self.musicStop = try AVAudioPlayer(contentsOf: stopMusicPath, fileTypeHint: "mp3")
         } catch  {
-            print("error")
+//            Alert(title: Text("error"), message: Text("cannnot road sound file."), dismissButton: Alert.Button.cancel())
+            print(error)
         }
+        self.tempCount = self.count
         self.countSoundPlayer?.prepareToPlay()
         self.musicStop?.prepareToPlay()
         print("timer: \(self.timerInfo!.setCount).\(self.timerInfo!.second)")
@@ -42,22 +47,22 @@ class CountDown: ObservableObject {
     }
     /// タイマーをカウントダウンする
     @objc func timerUpdate() {
+        // minus 1 sec.
         self.second -= 1
-        if self.second >= 0 {
-            print("play!!")
-            self.countSoundPlayer!.play()
-        }
-        if self.count == 0 && self.second < 0 {
+        // play countdown sound.
+        self.countSoundPlayer!.play()
+        // if end, timer stop and reset.
+        if  self.BothLessThanZero(){
             self.musicStop!.play()
             self.timer?.invalidate()
             self.resetTimer()
         }
-        if self.second < 0 {
+        if self.secoundLessThanZero() {
             self.second = self.interval - 1
-            self.count -= 1
+            self.tempCount -= 1
         }
 
-        print("timer: \(self.count).\(self.second)")
+        print("timer: \(self.tempCount).\(self.second)")
     }
     
     func stopTimer() -> Void {
@@ -67,7 +72,23 @@ class CountDown: ObservableObject {
     /// タイマーをリセットする
     func resetTimer() {
         self.timerInfo = TimerInfo(interval: 5, setCount: 10, second: 0)
-        self.count = self.timerInfo!.setCount
+        self.tempCount = self.count
         self.second = self.timerInfo!.second
+    }
+    
+    private func secoundLessThanZero() -> Bool {
+        if self.second < 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func BothLessThanZero() -> Bool {
+        if self.tempCount == 0 && self.second < 0 {
+            return true
+        } else {
+            return false
+        }
     }
 }
